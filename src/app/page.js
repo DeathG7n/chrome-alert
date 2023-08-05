@@ -4,50 +4,11 @@ import styles from './page.module.css'
 import { useEffect, useState } from 'react'
 
 export default function Home() {
-  const [alert, setAlert] = useState(false)
-  useEffect(()=>{
-    const notify = () => {
-      Notification.requestPermission().then((perm)=>{
-        if (perm === "granted"){
-          if (alert == true){
-            const notification = new Notification("Trade Alert", {
-              body: "Possible Trade Entry",
-              tag: "Trade Alert"
-            }) 
-          } 
-          if (alert == false){
-            const notification = new Notification("Trade Alert", {
-              body: "No Trade Entry",
-              tag: "No Alert"
-            }) 
-          } 
-        } else {
-          console.log("Why")
-        }
-      })
-    }
-    setInterval(async()=>{
-      const res = await fetch(`/api/alert`)
-      const body = await res.json()
-      setAlert(body)
-      window.onblur = notify()
-      window.onfocus = notify()
-      window.addEventListener("offline",()=>{
-        const notification = new Notification("Trade Alert", {
-          body: "Turn On Your Internet",
-          tag: "Offline"
-        }) 
-      })
-    }, 1000)
-  }, [alert])
-
-  
-  
   return (
     <main className={styles.main}>
       <div className={styles.description}>
         <p>
-          Trade Entry is {alert}&nbsp;
+          Trade Entry&nbsp;
           <code className={styles.code}>src/app/page.js</code>
         </p>
         <div>
