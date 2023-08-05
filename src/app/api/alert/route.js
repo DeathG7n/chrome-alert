@@ -47,7 +47,7 @@ const getTicksHistory = async () => {
         const mailOptions = {
             from: "christariccykid55@gmail.com",
             to: "meliodasdemonk8ng@gmail.com",
-            subject: 'Price is in an Uptrend',
+            subject: `Market Structure Broken at ${sma}`,
             text: 'Potential Buy Signal'
         };
         transporter.sendMail(mailOptions, (error, info) => {
