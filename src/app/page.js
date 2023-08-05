@@ -32,21 +32,22 @@ export default function Home() {
       setAlert(body)
       window.onblur = notify()
       window.onfocus = notify()
+      window.addEventListener("offline",()=>{
+        const notification = new Notification("Trade Alert", {
+          body: "Turn On Your Internet",
+          tag: "Offline"
+        }) 
+      })
     }, 1000)
   }, [alert])
+
   
-  window.addEventListener("offline",()=>{
-    const notification = new Notification("Trade Alert", {
-      body: "Turn On Your Internet",
-      tag: "Offline"
-    }) 
-  })
   
   return (
     <main className={styles.main}>
       <div className={styles.description}>
         <p>
-          Get started by editing&nbsp;
+          Trade Entry is {alert}&nbsp;
           <code className={styles.code}>src/app/page.js</code>
         </p>
         <div>
