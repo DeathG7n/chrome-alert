@@ -7,6 +7,7 @@ import { ema } from "ta.js";
 
 let interval = setInterval(()=> getTicksHistory(), 1000) 
 let trade = false
+let emails = 5
 
 // Create a transporter object using SMTP
 const transporter = nodemailer.createTransport({
@@ -64,6 +65,19 @@ const getTicksHistory = async () => {
 
 
 export async function GET(req){
+    const mailOptions = {
+        from: "christariccykid55@gmail.com",
+        to: "meliodasdemonk8ng@gmail.com",
+        subject: `Market Structure Broken at `,
+        text: 'Potential Buy Signal'
+    };
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error('Error sending email:', error);
+        } else {
+            console.log('Email sent successfully:', info.response);
+        }
+    });
     return NextResponse.json(trade)
 }
 
